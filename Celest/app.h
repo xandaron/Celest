@@ -1,6 +1,5 @@
 #pragma once
-#include "cfg.h"
-#include "Graphics/view/graphics_engine.h"
+#include "Graphics/graphics_engine.h"
 #include "Physics/physics_engine.h"
 #include "Game/camera.h"
 #include "Game/scene.h"

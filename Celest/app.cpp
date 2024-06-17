@@ -28,7 +28,7 @@ App::App(int width, int height) {
 
 	physicsEngine = new Physics::Engine();
 
-	graphicsEngine = new Graphics::Engine(width, height, window, camera);
+	graphicsEngine = new Graphics::Engine(window, camera);
 	graphicsEngine->loadAssets(scene->getAssetPack());
 }
 

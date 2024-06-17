@@ -4,10 +4,10 @@ PhysicsObject::DynamicBody::DynamicBody(BodyDescriptor descriptor) : Body(descri
 	type = BodyType::DYNAMIC;
 
 	velocity = descriptor.velocity;
-	force = glm::f64vec3(0);
+	force = glm::vec3(0);
 
 	angularVelocity = descriptor.angularVelocity;
-	torque = glm::f64vec3(0);
+	torque = glm::vec3(0);
 
 	orientationMatrix = orientation.toMat3();
 
@@ -24,22 +24,22 @@ void PhysicsObject::DynamicBody::updateInvInertiaOrientated() {
 	invInertiaOrientated = orientationMatrix * invInertia;
 }
 
-void PhysicsObject::DynamicBody::applyForce(glm::f64vec3 force) {
+void PhysicsObject::DynamicBody::applyForce(glm::vec3 force) {
 	this->force += force;
 }
 
-void PhysicsObject::DynamicBody::applyForceAtPoint(glm::f64vec3 force, glm::f64vec3 point) {
+void PhysicsObject::DynamicBody::applyForceAtPoint(glm::vec3 force, glm::vec3 point) {
 	this->force += force;
 	point -= position;
 	torque += glm::cross(point, force);
 }
 
-void PhysicsObject::DynamicBody::applyCollisionImpulse(glm::f64vec3 force, glm::f64vec3 distance) {
+void PhysicsObject::DynamicBody::applyCollisionImpulse(glm::vec3 force, glm::vec3 distance) {
 	this->velocity += force * invMass;
 	angularVelocity += invInertiaOrientated * glm::cross(distance, force);
 }
 
-void PhysicsObject::DynamicBody::move(glm::f64vec3 movement) {
+void PhysicsObject::DynamicBody::move(glm::vec3 movement) {
 	position += movement;
 
 	translationMatrix[3][0] = position[0];
@@ -47,7 +47,7 @@ void PhysicsObject::DynamicBody::move(glm::f64vec3 movement) {
 	translationMatrix[3][2] = position[2];
 }
 
-void PhysicsObject::DynamicBody::rotate(glm::f64vec3 rotation) {
+void PhysicsObject::DynamicBody::rotate(glm::vec3 rotation) {
 	orientation = (orientation + DataObject::Quaternion(rotation) * orientation).normalize();
 	orientationMatrix = orientation.toMat3();
 
@@ -62,7 +62,7 @@ void PhysicsObject::DynamicBody::rotate(glm::f64vec3 rotation) {
 	translationMatrix[2][2] = orientationMatrix[2][2];
 }
 
-glm::f64vec3 PhysicsObject::DynamicBody::momentum() {
+glm::vec3 PhysicsObject::DynamicBody::momentum() {
 	return velocity / invMass;
 }
 

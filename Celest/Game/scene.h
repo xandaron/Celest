@@ -1,18 +1,20 @@
 #pragma once
-#include "../cfg.h"
+#include "../vkCfg.h"
 #include "../Physics/objects/body.h"
 #include "camera.h"
 #include "entity.h"
 #include "player_controller.h"
+#include <unordered_map>
 
 namespace Game {
 
 	struct AssetPack {
 		std::vector<std::string> objectTypes;
-		std::vector<std::string> model_filenames;
-		std::vector<std::string> texture_filenames;
-		std::vector<glm::mat4> preTransforms;
-		std::vector<std::string*> skybocks;
+		std::vector<std::string> modelFilenames;
+		std::vector<std::string> textureFilenames;
+		std::vector<glm::mat3> preTransforms;
+		bool skyboxRepeatTexture = false;
+		std::array<std::string, 6> skybox;
 	};
 
 	class Scene {

@@ -98,23 +98,22 @@ void Game::Scene::load(const char* sceneFilepath) {
 						name = words[1];
 					}
 					else if (!words[0].compare("model_filename")) {
-						assetPack.model_filenames.push_back(words[1]);
+						assetPack.modelFilenames.push_back(words[1]);
 					}
 					else if (!words[0].compare("texture_filename")) {
-						assetPack.texture_filenames.push_back(words[1]);
+						assetPack.textureFilenames.push_back(words[1]);
 					}
 					else if (!words[0].compare("pre_transform")) {
 						std::vector<std::string> preTransformWords = split(words[1], ",");
 						if (preTransformWords.size() == 3) {
-							assetPack.preTransforms.push_back(glm::f64mat4(
-								std::stof(preTransformWords[0]), 0, 0, 0,
-								0, std::stof(preTransformWords[1]), 0, 0,
-								0, 0, std::stof(preTransformWords[2]), 0,
-								0, 0, 0, 1
+							assetPack.preTransforms.push_back(glm::mat3(
+								std::stof(preTransformWords[0]), 0, 0,
+								0, std::stof(preTransformWords[1]), 0,
+								0, 0, std::stof(preTransformWords[2])
 							));
 						}
 						else {
-							assetPack.preTransforms.push_back(glm::f64mat4(std::stof(words[1])));
+							assetPack.preTransforms.push_back(glm::mat3(std::stof(words[1])));
 						}
 					}
 				}

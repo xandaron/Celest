@@ -1,13 +1,12 @@
 #include "body.h"
 
 PhysicsObject::Body::Body(BodyDescriptor descriptor) {
-
 	uid = descriptor.uid;
 
 	position = descriptor.position;
 	orientation = descriptor.orientation;
-	glm::f64mat3 orientationMatrix = orientation.toMat3();
-	translationMatrix = glm::f64mat4(
+	glm::mat3 orientationMatrix = orientation.toMat3();
+	translationMatrix = glm::mat4(
 		orientationMatrix[0][0], orientationMatrix[0][1], orientationMatrix[0][2], 0,
 		orientationMatrix[1][0], orientationMatrix[1][1], orientationMatrix[1][2], 0,
 		orientationMatrix[2][0], orientationMatrix[2][1], orientationMatrix[2][2], 0,

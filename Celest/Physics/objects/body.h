@@ -8,11 +8,11 @@ namespace PhysicsObject {
 	struct BodyDescriptor {
 		std::string uid;
 
-		glm::f64vec3 position = glm::f64vec3(0);
+		glm::vec3 position = glm::vec3(0);
 		DataObject::Quaternion orientation = DataObject::Quaternion();
 
-		glm::f64vec3 velocity = glm::f64vec3(0);
-		glm::f64vec3 angularVelocity = glm::f64vec3(0);
+		glm::vec3 velocity = glm::vec3(0);
+		glm::vec3 angularVelocity = glm::vec3(0);
 
 		double invMass = 1.0;
 
@@ -32,9 +32,10 @@ namespace PhysicsObject {
 		std::string uid;
 		BodyType type = BodyType::STATIC;
 
-		glm::f64vec3 position;
+		glm::vec3 position;
 		DataObject::Quaternion orientation;
-		glm::f64mat4 translationMatrix;
+
+		glm::mat4 translationMatrix;
 
 		double coefRestitution;
 		double coefFriction;
@@ -43,7 +44,7 @@ namespace PhysicsObject {
 
 		Body(BodyDescriptor bodyDescriptor);
 
-		bool checkColliding(Body* obj, Collision::CollisionInfo* collisionInfo);
+		virtual bool checkColliding(Body* obj, Collision::CollisionInfo* collisionInfo) = 0;
 
 		~Body();
 	};

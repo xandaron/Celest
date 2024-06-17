@@ -5,15 +5,13 @@ namespace util {
 	class FileLoader {
 
 	public:
-		FileLoader(std::string filedir, std::string filename) {
-			this->filedir = filedir;
-			this->filepath = filedir + filename;
+		FileLoader(std::string filename) {
+			this->filepath = filename;
 		}
 
 		virtual bool load() = 0;
 
 	protected:
-		std::string filedir;
 		std::string filepath;
 	};
 }

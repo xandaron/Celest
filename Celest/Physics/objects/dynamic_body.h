@@ -8,17 +8,17 @@ namespace PhysicsObject {
 
 	class DynamicBody : public Body {
 	public:
-		glm::f64vec3 velocity;
-		glm::f64vec3 force;
+		glm::vec3 velocity;
+		glm::vec3 force;
 
-		glm::f64vec3 angularVelocity;
-		glm::f64vec3 torque;
+		glm::vec3 angularVelocity;
+		glm::vec3 torque;
 
-		glm::f64mat3 orientationMatrix;
+		glm::mat3 orientationMatrix;
 
 		double invMass;
-		glm::f64mat3 invInertia;
-		glm::f64mat3 invInertiaOrientated;
+		glm::mat3 invInertia;
+		glm::mat3 invInertiaOrientated;
 
 		DynamicBody(BodyDescriptor bodyDescriptor);
 
@@ -26,17 +26,17 @@ namespace PhysicsObject {
 
 		void updateInvInertiaOrientated();
 
-		void applyForce(glm::f64vec3 force);
+		void applyForce(glm::vec3 force);
 
-		void applyForceAtPoint(glm::f64vec3 force, glm::f64vec3 point);
+		void applyForceAtPoint(glm::vec3 force, glm::vec3 point);
 
-		void applyCollisionImpulse(glm::f64vec3 force, glm::f64vec3 distance);
+		void applyCollisionImpulse(glm::vec3 force, glm::vec3 distance);
 
-		void move(glm::f64vec3 movement);
+		void move(glm::vec3 movement);
 
-		void rotate(glm::f64vec3 rotation);
+		void rotate(glm::vec3 rotation);
 
-		glm::f64vec3 momentum();
+		glm::vec3 momentum();
 
 		~DynamicBody();
 	};

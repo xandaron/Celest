@@ -1,6 +1,4 @@
 #pragma once
-#include <vulkan/vulkan.hpp>
-#include <GLFW/glfw3.h>
 
 #define GLM_FORCE_SWIZZLE
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -11,48 +9,16 @@
 #include <fstream>
 
 #include <vector>
+#include <array>
 #include <set>
-#include <unordered_map>
 
 #include <string>
 #include <sstream>
 #include <format>
 
-#include <thread>
-#include <mutex>
-
 #include "Game/debug/logger.h"
 
-/**
-*	Data structures used for creating buffers
-*	and allocating memory
-*/
-struct BufferInputChunk {
-	size_t size;
-	vk::BufferUsageFlags usage;
-	vk::Device logicalDevice;
-	vk::PhysicalDevice physicalDevice;
-	vk::MemoryPropertyFlags memoryProperties;
-};
-
-/**
-*	holds a vulkan buffer and memory allocation
-*/
-struct Buffer {
-	vk::Buffer buffer;
-	vk::DeviceMemory bufferMemory;
-};
-
-enum class pipelineType {
-	SKY,
-	STANDARD
-};
-
-// String Processing functions
-
-// split string on specified character
 static std::vector<std::string> split(std::string line, std::string delimiter) {
-
 	std::vector<std::string> split_line;
 
 	size_t pos = 0;
@@ -67,7 +33,6 @@ static std::vector<std::string> split(std::string line, std::string delimiter) {
 	return split_line;
 }
 
-// trim from start (in place)
 inline void ltrim(std::string& s) {
 	s.erase(
 		s.begin(),
@@ -81,7 +46,6 @@ inline void ltrim(std::string& s) {
 	);
 }
 
-// trim from end (in place)
 inline void rtrim(std::string& s) {
 	s.erase(
 		std::find_if(
